@@ -7,7 +7,7 @@ px = pixabay.core("YOUR API KEY")
 notebooks = px.query(
     query      = "notebook",
     category   = "computers",
-    color      = "black",
+    colors     = "black",
     minWidth   = "100",
     safeSearch = True
 )
