@@ -21,7 +21,7 @@ make install
 
 ## Getting started
 
-### simple exmaple
+### simple example
 
 ```python
 import pixabay.core
