@@ -40,7 +40,7 @@ space[0].download("space.jpg", "largeImage")
 ```
 
 * [examples](https://github.com/Lukas0025/python-pixabay/tree/master/examples)
-* [documentation](https://python-pixabay.readthedocs.io/en/latest/namespaces.html)
+* [documentation](https://python-pixabay.readthedocs.io/en/latest/annotated.html)
 
 ## Getting help
 
