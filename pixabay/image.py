@@ -1,6 +1,6 @@
 ##
 # Pixabay API (unofficial)
-# @author Luká¹ Plevaè <lukas@plevac.eu>
+# @author LukÃ¡Â¹ PlevaÃ¨ <lukas@plevac.eu>
 # @date 3.2.2022
 
 import requests
@@ -154,5 +154,20 @@ class image:
     def download(self, dst, imtype = 'webformat'):
         with open(dst, 'wb') as handler:
             handler.write(self.downloadRaw(imtype))
-
+    ##
+    # Get published date of image
+    # @return datetime UTC of image publication
+    def getPublishedDate(self):
+        preview_url = self.getPreviewUrl()
         
+        #  year / month / day / hour / minute
+        match = re.search('\d{4}/\d{2}/\d{2}/\d{2}/\d{2}', preview_url)
+        if match:
+            parts = match.group().split('/')
+            return datetime.datetime(int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4]), tzinfo=datetime.timezone.utc)
+        
+        #  year / month / day
+        match = re.search('\d{4}/\d{2}/\d{2}', preview_url)
+        if match:
+            parts = match.group().split('/')
+            return datetime.datetime(int(parts[0]), int(parts[1]), int(parts[2]), tzinfo=datetime.timezone.utc)
