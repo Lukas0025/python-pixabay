@@ -1,9 +1,11 @@
 ##
 # Pixabay API (unofficial)
 # @author Luká¹ Plevaè <lukas@plevac.eu>
-# @date 3.2.2022
+# @date 17.9.2022
 
+from datetime import datetime, timezone
 import requests
+import re
 
 class image:
     ##
@@ -164,10 +166,10 @@ class image:
         match = re.search('\d{4}/\d{2}/\d{2}/\d{2}/\d{2}', preview_url)
         if match:
             parts = match.group().split('/')
-            return datetime.datetime(int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4]), tzinfo=datetime.timezone.utc)
+            return datetime(int(parts[0]), int(parts[1]), int(parts[2]), int(parts[3]), int(parts[4]), tzinfo=timezone.utc)
         
         #  year / month / day
         match = re.search('\d{4}/\d{2}/\d{2}', preview_url)
         if match:
             parts = match.group().split('/')
-            return datetime.datetime(int(parts[0]), int(parts[1]), int(parts[2]), tzinfo=datetime.timezone.utc)
+            return datetime(int(parts[0]), int(parts[1]), int(parts[2]), tzinfo=timezone.utc)
