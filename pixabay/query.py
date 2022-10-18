@@ -1,10 +1,11 @@
 ##
 # Pixabay API (unofficial)
-# @author Luká¹ Plevaè <lukas@plevac.eu>
+# @author Lukï¿½ Plevaï¿½ <lukas@plevac.eu>
 # @date 3.2.2022
 
 import requests
 from .image import image
+from .video import video
 import urllib.parse
 
 class query:
@@ -34,8 +35,10 @@ class query:
 
         if not(self._inCache(index)):
             self._addToChache(index)
-
-        return image(self.cache[index])
+        if 'videos' in self.params.host:
+            return video(self.cache[index])
+        else:
+            return image(self.cache[index])
 
     ##
     # Check if is image with index in chace

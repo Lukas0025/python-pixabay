@@ -1,12 +1,13 @@
 ##
 # Pixabay API (unofficial)
-# @author Luká¹ Plevaè <lukas@plevac.eu>
+# @author Lukï¿½ Plevaï¿½ <lukas@plevac.eu>
 # @date 3.2.2022
 
 import requests
 from .params import params
 from .query  import query as queryCore
 from .image  import image as imageCore
+from .video  import video as videoCore
 
 class core:
     ##
@@ -38,7 +39,7 @@ class core:
     # supported: all, grayscale, transparent, red, orange, yellow, green, turquoise, blue, lilac, pink, white, gray, black, brown 
     #
     # @return query object
-    def query(self, query='', lang='en', orientation='all', perPage=25, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all'):
+    def query(self, query='', lang='en', orientation='all', perPage=50, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all'):
         param = params(
             host          = self.host,
             apiKey        = self.apiKey,
@@ -74,3 +75,41 @@ class core:
             raise ValueError('Pixabay return status code != 200 for uri', uri, 'Invalid parameters?')
 
         return imageCore(r.json()['hits'][0])
+
+##
+    # Get video by ID
+    # @param iid video id
+    # @return video object
+    def video(self, iid):
+        uri = "{host}videos/?key={api}&id={id}".format(
+            host    = self.host,
+            id      = iid,
+            api     = self.apiKey,
+        )
+
+        r = requests.get(uri)
+
+        if (r.status_code != 200):
+            raise ValueError('Pixabay return status code != 200 for uri', uri, 'Invalid parameters?')
+
+        return videoCore(r.json()['hits'][0])
+
+    # @return query object
+    def queryVideo(self, query='', lang='en', orientation='all', perPage=50, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all'):
+        param = params(
+            host          = self.host+'videos/',
+            apiKey        = self.apiKey,
+            query         = query,
+            lang          = lang,
+            orientation   = orientation,
+            perPage       = perPage,
+            order         = order,
+            safeSearch    = safeSearch,
+            minWidth      = minWidth,
+            minHeight     = minHeight,
+            editorsChoice = editorsChoice,
+            category      = category,
+            colors        = colors
+        )
+
+        return queryCore(param)
