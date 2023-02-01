@@ -77,6 +77,7 @@ class query:
             editors = self.params.editorsChoice,
             cat     = self.params.category,
             colors  = self.params.colors
+            image_type = self.params.image_type,
         )
 
         r = requests.get(uri)
