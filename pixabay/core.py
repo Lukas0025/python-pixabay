@@ -39,7 +39,7 @@ class core:
     # supported: all, grayscale, transparent, red, orange, yellow, green, turquoise, blue, lilac, pink, white, gray, black, brown 
     #
     # @return query object
-    def query(self, query='', lang='en', orientation='all', perPage=50, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all'):
+    def query(self, query='', lang='en', orientation='all', perPage=50, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all', image_type='all'):
         param = params(
             host          = self.host,
             apiKey        = self.apiKey,
@@ -53,7 +53,8 @@ class core:
             minHeight     = minHeight,
             editorsChoice = editorsChoice,
             category      = category,
-            colors        = colors
+            colors        = colors,
+            image_type    = image_type
         )
 
         return queryCore(param)

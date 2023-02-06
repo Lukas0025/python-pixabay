@@ -1,6 +1,6 @@
 ##
 # Pixabay API (unofficial)
-# @author Luká¹ Plevaè <lukas@plevac.eu>
+# @author LukÃ¡Â¹ PlevaÃ¨ <lukas@plevac.eu>
 # @date 3.2.2022
 
 class params:
@@ -26,7 +26,7 @@ class params:
     # supported: all, grayscale, transparent, red, orange, yellow, green, turquoise, blue, lilac, pink, white, gray, black, brown 
     #
     # @return params object
-    def __init__(self, host='https://pixabay.com/api/', query='', apiKey='', lang='en', orientation='all', perPage=25, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all', id=-1):
+    def __init__(self, host='https://pixabay.com/api/', query='', apiKey='', lang='en', orientation='all', perPage=25, order="popular", safeSearch=False, minWidth=0, minHeight=0, editorsChoice=False, category='all', colors='all', image_type='photo', id=-1):
         self.host          = host
         self.query         = query
         self.apiKey        = apiKey
@@ -40,4 +40,5 @@ class params:
         self.editorsChoice = 'true' if editorsChoice else 'false'
         self.category      = category
         self.colors        = colors
+        self.image_type    = image_type
         self.id            = -1

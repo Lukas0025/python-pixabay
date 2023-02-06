@@ -62,7 +62,7 @@ class query:
     # Download page from API and save to cache
     # @param page index of page (from 0)
     def _getPage(self, page):
-        uri = "{host}?key={api}&q={query}&lang={lang}&orientation={orient}&per_page={per}&page={page}&order={order}&safesearch={safe}&min_width={width}&min_height={height}&editors_choice={editors}&category={cat}&colors={colors}".format(
+        uri = "{host}?key={api}&q={query}&lang={lang}&orientation={orient}&per_page={per}&page={page}&order={order}&safesearch={safe}&min_width={width}&min_height={height}&editors_choice={editors}&category={cat}&colors={colors}&image_type={image_type}".format(
             host    = self.params.host,
             query   = urllib.parse.quote(self.params.query, safe=''),
             api     = self.params.apiKey,
@@ -76,7 +76,8 @@ class query:
             height  = self.params.minHeight,
             editors = self.params.editorsChoice,
             cat     = self.params.category,
-            colors  = self.params.colors
+            colors  = self.params.colors,
+            image_type = self.params.image_type
         )
 
         r = requests.get(uri)
